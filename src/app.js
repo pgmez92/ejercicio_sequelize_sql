@@ -13,11 +13,12 @@ app.use(express.json())
 app.use('/', rtMain)
 
 //configuracion BDD
-DB.authenticate()
+DB.connection.authenticate()
     .then(() => console.log("BDD Mysql arrancao"))
-    .catch(err => console.log("err", err))
+    .catch(err => console.log("desastre:", err))
 
 //arrancamos el servidor:
 app.listen(8080, (err) => {
+    if (err) console.log(err)
     console.log('Server run on port 8080')
 })

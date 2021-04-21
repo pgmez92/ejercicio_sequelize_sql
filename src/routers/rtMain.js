@@ -1,25 +1,24 @@
-const express = require('express')
-const rtMain = express.Router()
+const express = require('express');
+const rtMain = express.Router();
+const daoUsers = require("../dao/daoUsers");
 
 
 //aqui te creas las rutas get, post, etc.. que necesies
 
 rtMain.get('/', function (req, res) {
-    console.log("buenas")
+    res.json({ res: "ey" });
 })
 
-rtMain.get('/quienes-somos', function (req, res) {
-    res.render('quienes-somos')
+rtMain.post('/create', function (req, res) {
+    console.log(req.body);
+    daoUsers.create(req.body)
+        .then(data => res.json(data))
 })
 
-rtMain.get('/donde-estamos', function (req, res) {
-    res.render('donde-estamos')
-})
-
-rtMain.get('/404', function (req, res) {
-    res.render('404')
+rtMain.get("/listar", function (req, res) {
+    daoUsers.find()
+        .then(data => res.json(data));
 })
 
 
-
-module.exports=rtMain
+module.exports = rtMain
