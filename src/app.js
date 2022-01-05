@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const rtMain = require('./routers/rtMain')
 const DB = require("./models")
+const rtLogin = require('./routers/rtLogin')
 
 //middlewares
 app.use(express.static(__dirname + '/public'))
